@@ -2,47 +2,81 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI Cards</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="outercard">
 
-        <div class="innercard">
+    <div id="card-container"></div>
 
-            <h2 class="tittle"> Web Design </h2>
-            <p class="subtiitle">Crafts engaging, user-friendly websites.</p>
+    <script>
 
-            <div class="chipsection">
+        const cardsData = [
+            {
+                title: "Web Design",
+                subtitle: "Crafts engaging, user-friendly websites.",
+                innerBgcolor: "#FFE1CB",
+                chipColor: "#FCD3B7",
+                chips: ["Landing Page", "Website", "One Page", "Portfolio"],
+            },
+            {
+                title: "UI/UX Design",
+                subtitle: "Designs modern, clean user interfaces.",
+                innerBgcolor: "#E0F3FF",
+                chipColor: "#C3E9FC",
+                chips: ["Wireframe", "Prototype", "Interaction"],
+            },
+            {
+                title: "Frontend Dev",
+                subtitle: "Builds responsive web applications.",
+                innerBgcolor: "#E2DBF9",
+                chipColor: "#D5C7FF",
+                chips: ["HTML", "CSS", "JavaScript", "React"],
+            },
 
-                <div class="chip"> Landing Page </div>
-                <div class="chip"> Website </div>
-                <div class="chip"> One Page </div>
-                <div class="chip"> Landing Page </div>
+            {
+                title: "Backend Dev",
+                subtitle: "Handles server logic and database integration.",
+                innerBgcolor: "#D5F6ED",
+                chipColor: "#A6E9D7",
+                chips: ["Node.js", "Express", "MongoDB", "API"],
+            }
 
+        ];
 
-            </div>
+        const container = document.getElementById("card-container");
 
+        cardsData.forEach(data => {
+            const card = document.createElement("div");
+            card.className = "outercard";
+
+            const chipsHTML = data.chips.map(text => `
+        <div class="chip" style="background-color: ${data.chipColor}">${text}</div>
+      `).join('');
+
+            card.innerHTML = `
+        <div class="innercard" style="background-color: ${data.innerBgcolor}">
+          <h2 class="title">${data.title}</h2>
+          <p class="subtitle">${data.subtitle}</p>
+          <div class="chipsection">${chipsHTML}</div>
         </div>
-
         <div class="bottom">
-            <div class="button">Explore </div>
-            <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="size-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-            </div>
+          <div class="button">Explore</div>
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" width="20" height="20">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </div>
         </div>
-    </div>
-
-
-    </div>
-
-
+      `;
+            container.appendChild(card);
+        });
+    </script>
 
 </body>
 
